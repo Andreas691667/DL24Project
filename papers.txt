@@ -13,6 +13,14 @@ https://lightning.ai/docs/pytorch/stable/notebooks/course_UvA-DL/11-vision-trans
 On attention visualization
 https://www.youtube.com/watch?v=7q3NGMkEtjI
 
+Overview of ViT explainability methods
+https://jacobgil.github.io/deeplearning/vision-transformer-explainability
+https://github.com/jacobgil/vit-explain/blob/main/vit_rollout.py
+
+Attention rollout
+https://arxiv.org/pdf/2005.00928
+https://medium.com/@nivonl/exploring-visual-attention-in-transformer-models-ab538c06083a
+
 Transformer explainability beyond attention visualization
 https://arxiv.org/abs/2012.09838
 https://medium.com/orohealth/explainable-ai-using-vision-transformers-on-skin-disease-images-9148d1583faf

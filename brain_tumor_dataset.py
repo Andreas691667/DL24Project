@@ -17,7 +17,7 @@ TRAIN_DATA_PATH = os.path.join(
 
 
 class BrainTumorDataset(Dataset):
-    def __init__(self, file_path, transform=None):
+    def __init__(self, file_path=TEST_DATA_PATH, transform=None):
         self.df = self.__load_to_df(file_path)
         self.file_path = file_path
         self.transform = transform

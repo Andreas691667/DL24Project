@@ -2,3 +2,11 @@ model_pretrained.pth
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 *.ckpt
+/logs/vit_pretrained/version_7
+/logs/vit_pretrained/version_6
+/logs/vit_pretrained/version_5
+/logs/vit_pretrained/version_4
+/logs/vit_pretrained/version_3
+/logs/vit_pretrained/version_2
+/logs/vit_pretrained/version_1
+__pycache__/brain_tumor_dataset.cpython-39.pyc

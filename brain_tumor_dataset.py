@@ -174,7 +174,7 @@ def augment_data(augmentations, file_path, num_augmentations=10, overwrite=True)
             # Generate multiple augmentations for each image
             for i in range(
                 num_augmentations
-            ):  # Change this number to generate more/less augmented copies
+            ):
                 augmented = augmentations(image=img)
                 augmented_img = augmented["image"]
 
@@ -188,7 +188,7 @@ def augment_data(augmentations, file_path, num_augmentations=10, overwrite=True)
                 )
                 augmented_files += 1
 
-        print(f"Augmented {augmented_files} images in {root}.")
+        print(f"Added {augmented_files} augmented images in {root}.")
 
 
 def show_augmentations(sample, augmentations):

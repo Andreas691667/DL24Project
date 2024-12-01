@@ -11,6 +11,7 @@ import imutils
 import torchvision
 import torchvision.transforms.functional
 from tqdm import tqdm
+import copy
 
 
 TEST_DATA_PATH = os.path.join(
@@ -164,19 +165,77 @@ def augment_data(augmentations, file_path, num_augmentations=10, overwrite=True)
                 print(f"Failed to read image: {file_path_full}")
                 continue
 
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB for Albumentations
+            img = cv2.cvtColor(
+                img, cv2.COLOR_BGR2RGB
+            )  # Convert BGR to RGB for Albumentations
 
             file_extension = os.path.splitext(file_name)[1]
 
             # Generate multiple augmentations for each image
-            for i in range(num_augmentations):  # Change this number to generate more/less augmented copies
+            for i in range(
+                num_augmentations
+            ):  # Change this number to generate more/less augmented copies
                 augmented = augmentations(image=img)
-                augmented_img = augmented['image']
+                augmented_img = augmented["image"]
 
                 # Save augmented image
-                aug_file_name = f"{os.path.splitext(file_name)[0]}_aug{i}{file_extension}"
+                aug_file_name = (
+                    f"{os.path.splitext(file_name)[0]}_aug{i}{file_extension}"
+                )
                 aug_file_path = os.path.join(root, aug_file_name)
-                cv2.imwrite(aug_file_path, cv2.cvtColor(augmented_img, cv2.COLOR_RGB2BGR))
+                cv2.imwrite(
+                    aug_file_path, cv2.cvtColor(augmented_img, cv2.COLOR_RGB2BGR)
+                )
                 augmented_files += 1
-            
+
         print(f"Augmented {augmented_files} images in {root}.")
+
+
+def show_augmentations(sample, augmentations):
+    """Visualizes the effect of applying a list of augmentations to a sample image."""
+
+    # show individual augmentations on the sample in a grid
+    # Function to apply augmentation and convert to numpy array
+    def apply_augmentation(augmentation, image):
+        augmented = augmentation(image=np.array(image))["image"]
+        return Image.fromarray(augmented)
+
+    augmentations = copy.deepcopy(augmentations)
+
+    # convert augmentations from A.Compose to list
+    if not isinstance(augmentations, list):
+        augmentations = augmentations.transforms
+
+    # set all probability to 1 for visualization
+    for aug in augmentations:
+        for transform in augmentations:
+            transform.p = 1
+
+    # Apply each augmentation to the sample image
+    augmented_images = [apply_augmentation(aug, sample) for aug in augmentations]
+
+    # Plot the original and augmented images in a grid
+    n_cols = 3
+    n_rows = (len(augmented_images) + 1) // n_cols + 1
+
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(15, 15))
+
+    # Show original image
+    axes[0, 0].imshow(sample)
+    axes[0, 0].set_title("Original Image")
+    axes[0, 0].axis("off")
+
+    # Show augmented images
+    for i, aug_img in enumerate(augmented_images):
+        row = (i + 1) // n_cols
+        col = (i + 1) % n_cols
+        axes[row, col].imshow(aug_img)
+        axes[row, col].set_title(f"Augmentation {i + 1}")
+        axes[row, col].axis("off")
+
+    # Hide any unused subplots
+    for j in range(len(augmented_images) + 1, n_rows * n_cols):
+        fig.delaxes(axes.flatten()[j])
+
+    plt.tight_layout()
+    plt.show()

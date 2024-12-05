@@ -1,1 +1,1 @@
-with optuna, with augmentation
+with optuna, with augmentation, without lightning.datamodule

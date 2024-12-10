@@ -19,14 +19,6 @@ Brain tumor detection is a critical application of AI in healthcare. While deep 
   - `utils.py`
 - `report/`: Final report and images used in the report.
 - `README.md`: Project description, references, and setup instructions.
-
-#### Changes to Source Code
-
-- In `vision_transformer.py` line 114, the `forward` function of the `EncoderBlock` was modified as follows:
-  ```python
-  x, _ = self.self_attention(x, x, x, need_weights=True)
-  ```
-  The `need_weights` parameter has been explicitly set to `True` instead of `False`, such that we could use a hook to retrieve the attention matrices needed for attention rollout.
 ## Key Features
 
 - **Dataset**: The [Brain Tumor MRI Dataset](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset) comprising four classes: glioma, meningioma, pituitary tumors, and no tumors.
@@ -42,24 +34,6 @@ Brain tumor detection is a critical application of AI in healthcare. While deep 
   - Test accuracy: **0.97**
 - **XAI Validation**: Explanations were compared against a medical student’s annotations for validation.
 
-## Getting Started
-
-### Prerequisites
-
-- Python 3.8 or later
-- PyTorch
-- PyTorch Lightning
-- Optuna
-- Albumentations
-- LIME
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Andreas691667/DL24Project.git
-
-   cd DL24Project
 ## Report
 
 The full project report is available in the `report/` directory. It includes detailed descriptions of the methodology, experiments, results, and insights.
@@ -112,3 +86,11 @@ The full project report is available in the `report/` directory. It includes det
 9. **Brain Tumor MRI Dataset**  
    Dataset containing MRI images categorized into glioma, meningioma, pituitary tumors, and no tumors.  
    [Kaggle Dataset](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
+
+## Changes to Source Code
+
+- In `vision_transformer.py` line 114, the `forward` function of the `EncoderBlock` was modified as follows:
+  ```python
+  x, _ = self.self_attention(x, x, x, need_weights=True)
+  ```
+  The `need_weights` parameter has been explicitly set to `True` instead of `False`, such that we could use a hook to retrieve the attention matrices needed for attention rollout.

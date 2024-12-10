@@ -1,7 +1,6 @@
 model_pretrained.pth
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
-*.ckpt
 __pycache__/
 /logs/vit_pretrained/version_7
 /logs/vit_pretrained/version_6

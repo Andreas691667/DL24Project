@@ -1,5 +1,0 @@
-batch_size: 64
-learning_rate: 0.00019894541480815157
-patch_size: 32
-pretrained_weights: IMAGENET1K_V1
-weight_decay: 4.406232819472161e-06

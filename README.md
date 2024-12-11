@@ -18,7 +18,7 @@ Brain tumor detection is a critical application of AI in healthcare. While deep 
   - `transforms.py`
   - `utils.py`
 - `report/`: Final report.
-- `README.md`: Project description, references, and setup instructions.
+- `README.md`: Project description and references.
 ## Key Features
 
 - **Dataset**: The [Brain Tumor MRI Dataset](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset) comprising four classes: glioma, meningioma, pituitary tumors, and no tumors.

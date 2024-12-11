@@ -17,7 +17,7 @@ Brain tumor detection is a critical application of AI in healthcare. While deep 
   - `datasets.py`
   - `transforms.py`
   - `utils.py`
-- `report/`: Final report and images used in the report.
+- `report/`: Final report.
 - `README.md`: Project description, references, and setup instructions.
 ## Key Features
 
